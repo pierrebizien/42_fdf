@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierrebizien <pierrebizien@student.42.f    +#+  +:+       +#+        */
+/*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 17:09:09 by pbizien           #+#    #+#             */
-/*   Updated: 2022/12/04 18:18:52 by pierrebizie      ###   ########.fr       */
+/*   Updated: 2022/11/08 10:42:40 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = ft_calloc(i - start + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_memcpy_lft(str, s1 + start, i - start);
+	ft_memcpy(str, s1 + start, i - start);
 	return (str);
 }
 
