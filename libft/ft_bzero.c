@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 17:08:04 by pbizien           #+#    #+#             */
+/*   Created: 2022/11/01 17:02:52 by pbizien           #+#    #+#             */
 /*   Updated: 2022/11/08 09:32:31 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//  The  strdup()  function returns a pointer to a new string which is a 
-//  duplicate of the string s.  Memory for the new string is ob‐
-//  tained with malloc(3), and can be freed with free(3).
+// La fonction bzero() met à 0 (octets contenant « \0 ») les n premiers octets 
+// du bloc pointé par s.
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_strdup(const char *s)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*str_dup;
+	size_t			i;
+	unsigned char	*ptr;
 
-	str_dup = ft_calloc((ft_strlen(s) + 1), sizeof(char));
-	if (!str_dup)
-		return (NULL);
-	ft_memcpy(str_dup, s, (int)ft_strlen(s));
-	return (str_dup);
+	ptr = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
 }
 
 /*
 int	main()
 {
-	char str[] = "Hello my maaaan";
-	char *str2;
+	char str[] = "Hello je m'appelle Pierre";
 
-	str2 = ft_strdup(str);
-	printf("%s", str2);
-}*/
+	ft_bzero(str+5, 6);
+	int	i;
+
+	i = 0;
+
+	while (i < 25)
+	{
+		printf("%c", str[i]);
+		i++;
+	}
+	
+}
+*/
