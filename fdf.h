@@ -7,7 +7,9 @@
 #define WIN_HEIGHT 900
 #define WIN_WIDTH 1500
 
-#define MAP "./maps/test_maps/10-2.fdf"
+#define MAP "./maps/test_maps/mars.fdf"
+
+#define OFF_SIDE 20
 
 #include "get_next_line.h"
 #include <math.h>

@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/10 17:47:49 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:11:26 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ int main(int ac, char** av)
     t_win	mlx_i;
 	t_data	img;
 	int		fd;
+	t_point **map;
 
 	fd = open(MAP, O_RDONLY);
-	printf("fd vaut %d", fd);
     mlx_i.mlx_ptr = mlx_init();
 	mlx_i.win_ptr = mlx_new_window(mlx_i.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	img.img = mlx_new_image(mlx_i.mlx_ptr, WIN_WIDTH ,WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_length, &img.endian);
-	ft_generate_map(&fd, &img);
+	map = ft_generate_map(&fd, &img);
+	ft_generate_position(&img, map);
 	mlx_put_image_to_window(mlx_i.mlx_ptr, mlx_i.win_ptr, img.img, 0 ,0);
-	printf("height vaut mtn %d", img.height);
-	printf("width vaut mtn %d", img.width);
 	// mlx_loop(mlx_i.mlx_ptr);
 }
