@@ -1,8 +1,8 @@
-LIBRARY = -I ./minilibx_linux -L ./minilibx_linux/ -I ./libft -L ./libft
+LIBRARY = -I ./minilibx_linux -L ./minilibx_linux/ -I ./libft -L ./libft -lft
 
 NAME = FdF
 
-SRCS = main.c draw.c 
+SRCS = main.c draw.c gen_map.c get_next_line.c get_next_line_utils.c
 
 all:
 	$(MAKE) -C ./minilibx_linux
