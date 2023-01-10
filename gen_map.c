@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/10 18:12:59 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:56:27 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,40 @@ static int		ft_define(int *fd, t_data *img)
 	return (i);
 }
 
+void	ft_fill_line(char **tmp, t_point *line, t_data *img)
+{
+	int	i;
+
+	i = 0;
+	while (i < img->width)
+	{
+		line[i].z = ft_atoi(tmp[i]);
+		i++;
+	}
+}
+
 t_point		**ft_generate_map(int *fd, t_data *img)
 {
     t_point **output;
+	char	**tmp;
+	int		i;
 	
+	i = 0;
 	ft_define(fd, img);
 	output = malloc(sizeof(t_point *) * img->height);
 	if (!output)
 		return (NULL);
-	output[0] = 
+	while(i < img->height)
+	{
+		output[i] = malloc(sizeof(t_point) * img->width);
+		if (!output[i])
+		{
+			return (NULL);
+	//		Fonction de free
+		}
+		tmp = ft_split(get_next_line(*fd), ' ');
+		ft_fill_line(tmp, output[i], img);
+		i++;
+	}
+	return (output);
 }
