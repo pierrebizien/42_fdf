@@ -2,7 +2,7 @@ LIBRARY = -I ./minilibx_linux -L ./minilibx_linux/ -I ./libft -L ./libft -lft
 
 NAME = FdF
 
-SRCS = main.c draw.c gen_map.c get_next_line.c get_next_line_utils.c
+SRCS = main.c draw_fct.c gen_map.c get_next_line.c get_next_line_utils.c gen_positions.c draw_map.c
 
 all:
 	$(MAKE) -C ./minilibx_linux
@@ -24,3 +24,6 @@ run: all
 
 re: fclean
 	all
+
+valgrind: all
+	valgrind ./FdF --leak-check=full
