@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/10 18:56:27 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 11:28:27 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static int		ft_define_width(char *str)
 {
 	int	i;
 	int	count;
-	
+
 	i = 0;
 	count = 0;
 	if (!str)
 		return (0);
 	while (str[i])
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' && str[i + 1] != ' ')
 			count++;
 		i++;
 	}
-	return(count);
+	return(count + 1);
 }
 
 //Tourne une fois gnl et remet a 0 avec un fd
-//definit height et with
+//definit height width et zoom initial
 
 static int		ft_define(int *fd, t_data *img)
 {
@@ -41,7 +41,6 @@ static int		ft_define(int *fd, t_data *img)
 
 	i = 0;
 	tmp = get_next_line(*fd);
-	// printf("tmp vaut %d\n ", ft_strlen(tmp));
 	img->width = ft_define_width(tmp);
     while (tmp)
     {
@@ -55,6 +54,8 @@ static int		ft_define(int *fd, t_data *img)
 	close(*fd);
 	*fd = j;
 	img->height = i;
+	img->zoom = (float)(WIN_HEIGHT - 200) / (float)img->width;
+	printf("ZOOM VAUT %f\n", img->zoom);
 	return (i);
 }
 
@@ -65,7 +66,7 @@ void	ft_fill_line(char **tmp, t_point *line, t_data *img)
 	i = 0;
 	while (i < img->width)
 	{
-		line[i].z = ft_atoi(tmp[i]);
+		line[i].h = ft_atoi(tmp[i]);
 		i++;
 	}
 }
@@ -75,15 +76,15 @@ t_point		**ft_generate_map(int *fd, t_data *img)
     t_point **output;
 	char	**tmp;
 	int		i;
-	
+
 	i = 0;
 	ft_define(fd, img);
-	output = malloc(sizeof(t_point *) * img->height);
+	output = ft_calloc(sizeof(t_point *) , (img->height));
 	if (!output)
 		return (NULL);
 	while(i < img->height)
 	{
-		output[i] = malloc(sizeof(t_point) * img->width);
+		output[i] = ft_calloc(sizeof(t_point) , (img->width));
 		if (!output[i])
 		{
 			return (NULL);
@@ -93,5 +94,6 @@ t_point		**ft_generate_map(int *fd, t_data *img)
 		ft_fill_line(tmp, output[i], img);
 		i++;
 	}
+
 	return (output);
 }

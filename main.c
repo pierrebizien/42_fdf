@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/10 19:11:26 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 11:16:18 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ int main(int ac, char** av)
 	t_data	img;
 	int		fd;
 	t_point **map;
+	t_point p1;
+	t_point p2;
+
+	p1.x = 100;
+	p1.y = 200;
+	p2.x = 150;
+	p2.y = 300;
 
 	fd = open(MAP, O_RDONLY);
     mlx_i.mlx_ptr = mlx_init();
@@ -36,7 +43,8 @@ int main(int ac, char** av)
 	img.img = mlx_new_image(mlx_i.mlx_ptr, WIN_WIDTH ,WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_length, &img.endian);
 	map = ft_generate_map(&fd, &img);
-	ft_generate_position(&img, map);
+	map = ft_generate_position(&img, map);
+	map = ft_trace_map(map, &img);
 	mlx_put_image_to_window(mlx_i.mlx_ptr, mlx_i.win_ptr, img.img, 0 ,0);
-	// mlx_loop(mlx_i.mlx_ptr);
+	mlx_loop(mlx_i.mlx_ptr);
 }
