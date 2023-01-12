@@ -6,25 +6,22 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/12 11:16:48 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 15:34:13 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-static int	ft_color(int valeur)
+static int	ft_color(int valeur, t_data *img)
 {
 	int	i;
 	int	color;
-
-	i = 0;
-	color = 0x00FFFFFF;
-	while (i <= valeur)
-	{
-		color-= 
-		i++;
-	}
+	
+	if (img->bool_color == 0)
+		color = 0;
+	else
+		color = (valeur + 1) * 7000;
 	return (color);
 	
 }
@@ -54,9 +51,9 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 		if (temp >= WIN_HEIGHT || p1.x >= WIN_WIDTH)
 			return ;
 		if(temp - (int)temp > 0.5)
-			ft_mlx_pixel_put_img(p1.x, (int)(temp + 1), (p1.h + 1) * 7000, img);
+			ft_mlx_pixel_put_img(p1.x, (int)(temp + 1), ft_color(p1.h, img), img);
 		else
-			ft_mlx_pixel_put_img(p1.x, (int)(temp), (p1.h + 1) * 7000, img);
+			ft_mlx_pixel_put_img(p1.x, (int)(temp),  ft_color(p1.h, img), img);
 		p1.x+= sens;
 	}
 }
@@ -84,9 +81,9 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 		else
 		{
 			if(temp - (int)temp > 0.5)
-				ft_mlx_pixel_put_img((int)(temp + 1), p1.y, (p1.h + 1) * 7000, img);
+				ft_mlx_pixel_put_img((int)(temp + 1), p1.y,  ft_color(p1.h, img), img);
 			else
-				ft_mlx_pixel_put_img((int)temp, p1.y, (p1.h + 1) * 7000, img);
+				ft_mlx_pixel_put_img((int)temp, p1.y,  ft_color(p1.h, img), img);
 			p1.y+= sens;
 		}
 	}
