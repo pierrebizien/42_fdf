@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/12 11:28:27 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 15:28:28 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int		ft_define(int *fd, t_data *img)
 	close(*fd);
 	*fd = j;
 	img->height = i;
-	img->zoom = (float)(WIN_HEIGHT - 200) / (float)img->width;
+	img->zoom = (float)(WIN_WIDTH) / ((float)img->width);
 	printf("ZOOM VAUT %f\n", img->zoom);
 	return (i);
 }
@@ -94,6 +94,6 @@ t_point		**ft_generate_map(int *fd, t_data *img)
 		ft_fill_line(tmp, output[i], img);
 		i++;
 	}
-
+	img->bool_color = 1;
 	return (output);
 }

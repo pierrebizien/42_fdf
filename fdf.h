@@ -7,7 +7,7 @@
 #define WIN_HEIGHT 900
 #define WIN_WIDTH 1500
 
-#define MAP "./maps/test_maps/100-6.fdf"
+#define MAP "./maps/test_maps/42.fdf"
 
 
 #include "get_next_line.h"
@@ -17,11 +17,17 @@
 
 typedef struct  s_win
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
+    void    *ptr;
+    void    *win;
     
 } t_win;
 
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+	int	h;
+}				t_point;
 typedef struct	s_data {
 	void		*img;
 	char		*addr;
@@ -31,14 +37,12 @@ typedef struct	s_data {
 	int			height;
 	int			width;
 	float		zoom;
+	int			bool_color;
+	t_win		mlx;
+	t_point		**map;
 }				t_data;
 
-typedef struct	s_point
-{
-	int	x;
-	int	y;
-	int	h;
-}				t_point;
+
 
 //PROTOTYPES DRAW
 
