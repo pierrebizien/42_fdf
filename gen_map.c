@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/12 15:28:28 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:20:20 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int		ft_define(int *fd, t_data *img)
 	*fd = j;
 	img->height = i;
 	img->zoom = (float)(WIN_WIDTH) / ((float)img->width);
-	printf("ZOOM VAUT %f\n", img->zoom);
 	return (i);
 }
 

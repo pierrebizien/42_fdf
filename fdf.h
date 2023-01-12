@@ -7,8 +7,8 @@
 #define WIN_HEIGHT 900
 #define WIN_WIDTH 1500
 
-#define MAP "./maps/test_maps/42.fdf"
-
+#define MAP "./maps/test_maps/2-2.fdf"
+#define ROTATE 0.05
 
 #include "get_next_line.h"
 #include <math.h>
@@ -39,7 +39,7 @@ typedef struct	s_data {
 	float		zoom;
 	int			bool_color;
 	t_win		mlx;
-	t_point		**map;
+	t_point		***map;
 }				t_data;
 
 
@@ -53,5 +53,8 @@ t_point		**ft_generate_map(int *fd, t_data *img);
 t_point    **ft_generate_position(t_data *img, t_point **map);
 
 t_point    **ft_trace_map(t_point **map, t_data *img);
+
+void	ft_rotate(t_data *img);
+
 
 #endif
