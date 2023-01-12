@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/12 17:26:24 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:43:22 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int	deal_key(int key, t_data *param)
 	if (key == 65361)
 	{
 		param->bool_color = 0;
-		ft_trace_map(*param->map, param);
-		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+		ft_trace_map(param->map, param);
 		param->bool_color = 1;
+		printf("x vaut %d avant \n", param->map[0][1].x);
 		ft_rotate(param);
+		printf("x vaut %d apres \n", param->map[0][1].x);
+
+		ft_trace_map(param->map, param);
 		
-		// ROTATE
-		// TRACE COULEUR
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+
 	}
 }
 
@@ -46,19 +49,19 @@ int main(int ac, char** av)
 	map = ft_generate_map(&fd, &img);
 	map = ft_generate_position(&img, map);
 	ft_trace_map(map, &img);
-	img.map = &map;
+	img.map = map;
 	// fprintf(stderr, "\n|%d|\n",map[0][0].x);
 	
 	// fprintf(stderr, "\n|%d|\n",img.map[0][0].x);
-	fprintf(stderr,"map[0][0].x vaut %d\n", img.map[0][0]->x);
-	fprintf(stderr,"map[0][1].x vaut %d\n", img.map[0][1]->x);
-	fprintf(stderr,"map[0][2].x vaut %d\n", img.map[0][2]->x);
-	fprintf(stderr,"map[1][0].x vaut %d\n", img.map[1][0]->x);
-	fprintf(stderr,"map[1][1].x vaut %d\n", img.map[1][1]->x);
-	fprintf(stderr,"map[1][2].x vaut %d\n", img.map[1][2]->x);
-	fprintf(stderr,"map[2][0].x vaut %d\n", img.map[2][0]->x);
-	fprintf(stderr,"map[2][1].x vaut %d\n", img.map[2][1]->x);
-	fprintf(stderr,"map[2][2].x vaut %d\n", img.map[2][2]->x);
+	// fprintf(stderr,"map[0][0].x vaut %d\n", img.map[0][0].x);
+	// fprintf(stderr,"map[0][1].x vaut %d\n", img.map[0][1].x);
+	// fprintf(stderr,"map[0][2].x vaut %d\n", img.map[0][2].x);
+	// fprintf(stderr,"map[1][0].x vaut %d\n", img.map[1][0].x);
+	// fprintf(stderr,"map[1][1].x vaut %d\n", img.map[1][1].x);
+	// fprintf(stderr,"map[1][2].x vaut %d\n", img.map[1][2].x);
+	// fprintf(stderr,"map[2][0].x vaut %d\n", img.map[2][0].x);
+	// fprintf(stderr,"map[2][1].x vaut %d\n", img.map[2][1].x);
+	// fprintf(stderr,"map[2][2].x vaut %d\n", img.map[2][2].x);
 	mlx_put_image_to_window(img.mlx.ptr, img.mlx.win, img.img, 0 ,0);
 	mlx_key_hook(img.mlx.win, deal_key, &img);
 	mlx_loop(img.mlx.ptr);

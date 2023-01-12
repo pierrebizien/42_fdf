@@ -39,7 +39,7 @@ typedef struct	s_data {
 	float		zoom;
 	int			bool_color;
 	t_win		mlx;
-	t_point		***map;
+	t_point		**map;
 }				t_data;
 
 

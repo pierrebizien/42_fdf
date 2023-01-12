@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/12 16:25:06 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:55:02 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 	while (p1.x != p2.x)
 	{
 		temp = temp + m * 1;
-		if (temp >= WIN_HEIGHT || p1.x >= WIN_WIDTH)
+		if (temp >= WIN_HEIGHT || p1.x >= WIN_WIDTH || temp < 0 || p1.x < 0)
 			return ;
 		if(temp - (int)temp > 0.5)
 			ft_mlx_pixel_put_img(p1.x, (int)(temp + 1), ft_color(p1.h, img), img);
 		else
-			ft_mlx_pixel_put_img(p1.x, (int)(temp),  ft_color(p1.h, img), img);
+			ft_mlx_pixel_put_img(p1.x, (int)(temp), ft_color(p1.h, img), img);
 		p1.x+= sens;
 	}
 }
@@ -78,7 +78,7 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 	while (p1.y != p2.y + 1)
 	{
 		temp = temp + m * 1;
-		if (temp >= WIN_WIDTH || p1.y >= WIN_HEIGHT)
+		if (temp >= WIN_WIDTH || p1.y >= WIN_HEIGHT || temp < 0 || p1.y < 0)
 			return ;
 		else
 		{
