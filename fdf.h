@@ -3,17 +3,17 @@
 
 #include "minilibx_linux/mlx.h"
 #include "libft/libft.h"
+#include "get_next_line.h"
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define WIN_HEIGHT 900
 #define WIN_WIDTH 1500
 
 #define MAP "./maps/test_maps/2-2.fdf"
-#define ROTATE 0.05
-
-#include "get_next_line.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+#define ROTATE (3.141593 / 180) * 1
+#define TEST
 
 typedef struct  s_win
 {
@@ -24,9 +24,9 @@ typedef struct  s_win
 
 typedef struct	s_point
 {
-	int	x;
-	int	y;
-	int	h;
+	float	x;
+	float	y;
+	float	h;
 }				t_point;
 typedef struct	s_data {
 	void		*img;
@@ -54,7 +54,9 @@ t_point    **ft_generate_position(t_data *img, t_point **map);
 
 t_point    **ft_trace_map(t_point **map, t_data *img);
 
-void	ft_rotate(t_data *img);
+void	ft_rotate(t_data *img, int sens);
+void	ft_origin(t_data *img);
+void	ft_center(t_data *img);
 
 
 #endif
