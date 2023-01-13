@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 15:17:01 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/13 17:59:22 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 	float temp;
 	float m;
 	int sens;
+	int tmp;
+
+	
 	// fprintf(stderr, "p1x vaut %d et p1y vaut %d\n", (int)(p1.x), (int)(p1.y));
 	// fprintf(stderr, "p2x vaut %d et p2y vaut %d\n", (int)(p2.x), (int)(p2.y));
 	if (p1.x < p2.x)
@@ -49,9 +52,10 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 		sens = -1;
 	m = (float)(p2.y - p1.y)/ ((float)(p2.x - p1.x));
 	temp = p1.y;
-	while ((int)p1.x != (int)p2.x)
+	fprintf(stderr, "horiz m vaut %f\n", m);
+	while ((int)p1.x != (int)p2.x + 1)
 	{
-		temp = temp + m * 1;
+		temp = temp + fabs(m) * 1;
 		if ((int)temp + 1 > WIN_HEIGHT || (int)p1.x > WIN_WIDTH || (int)temp < 0 || (int)p1.x < 0)
 		{
 			// fprintf(stderr, "temp vaut %f \n", temp);
@@ -85,16 +89,13 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 		sens = 1;
 	else 
 		sens = -1;
-	// if (p2.x - p1.x == 0)
-	// 	m = p2.y - p1.y + 1;
-	// else
 	m = (float)(p2.x - p1.x)/ ((float)(p2.y - p1.y));
 	temp = p1.x;
-	// fprintf(stderr, "p1x vaut %d et p1y vaut %d\n", (int)(p1.x), (int)(p1.y));
+	fprintf(stderr, "vert m vaut %f\n", m);
 	// fprintf(stderr, "p2x vaut %d et p2y vaut %d\n", (int)(p2.x), (int)(p2.y));
 	while ((int)p1.y != (int)p2.y + 1)
 	{
-		temp = temp + m * 1;
+		temp = temp + fabs(m) * 1;
 		if (temp + 1 > WIN_WIDTH || p1.y > WIN_HEIGHT || temp < -0 || p1.y < -0)
 			return ;
 		else
@@ -134,18 +135,22 @@ void	tracersegment(t_point p1, t_point p2, t_data *img)
 	ft_offset(&p1, &p2, img);
 	if (p2.x - p1.x == 0)
 	{
+		fprintf(stderr, "coucou\n");
 		m = (float)(p2.y - p1.y);
 	}
 	else
 		m = (float)(p2.y - p1.y)/ ((float)(p2.x - p1.x));
-	if (fabs(m) > 0.5)
+	fprintf(stderr, "\n------------\np1 x vaut %f\n", p1.x);
+	fprintf(stderr, "\np1 y vaut %f\n", p1.y);
+	fprintf(stderr, "\np2 x vaut %f\n", p2.x);
+	fprintf(stderr, "\np2 y vaut %f\n", p2.y);
+	fprintf(stderr, "\nm ici vaut %f\n", m);
+	if (fabs(m) > 1)
 	{
-		// fprintf(stderr, "\nOn trace de p1 x %f y %f a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
 		bres_vertical(p1, p2, img);
 	}
 	else
 	{
-		// fprintf(stderr, "\nOn trace de p1 x %f y %f a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
 		bres_horizontal(p1, p2, img);
 	}
 }
