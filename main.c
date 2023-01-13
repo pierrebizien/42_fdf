@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 14:58:37 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:17:45 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	deal_key(int key, t_data *param)
 	param->bool_color = 1;
 	if (key == 65361)
 	{
-		ft_origin(param);
+		// ft_origin(param);
 		ft_rotate(param, 1);
-		ft_center(param);
+		// ft_center(param);
 		ft_trace_map(param->map, param);
 		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
 	}
 	if (key == 65363)
 	{
-		ft_origin(param);
+		// ft_origin(param);
 		ft_rotate(param, -1);
-		ft_center(param);
+		// ft_center(param);
 		ft_trace_map(param->map, param);
 		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
 	}
@@ -55,6 +55,7 @@ int main(int ac, char** av)
 	//pb de free ensuite
 	img.map = ft_generate_position(&img, map);
 	// ft_center(&img);
+	
 	ft_trace_map(map, &img);
 	// fprintf(stderr, "\n|%d|\n",map[0][0].x);
 	

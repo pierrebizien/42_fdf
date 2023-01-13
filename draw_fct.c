@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 12:50:18 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:17:01 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,19 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 	}
 }
 
+void	ft_offset(t_point *p1, t_point *p2, t_data *img)
+{
+	p1->x += img->offset_x;
+	p1->y += img->offset_y;
+	p2->x += img->offset_x;
+	p2->y += img->offset_y;
+}
+
 void	tracersegment(t_point p1, t_point p2, t_data *img)
 {
 	float m;
 
+	ft_offset(&p1, &p2, img);
 	if (p2.x - p1.x == 0)
 	{
 		m = (float)(p2.y - p1.y);

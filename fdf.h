@@ -40,6 +40,8 @@ typedef struct	s_data {
 	int			bool_color;
 	t_win		mlx;
 	t_point		**map;
+	float		offset_x;
+	float		offset_y;
 }				t_data;
 
 

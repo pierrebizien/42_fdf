@@ -6,58 +6,11 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:52 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 14:56:09 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:18:45 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	ft_origin(t_data *img)
-{
-	int	i;
-	int	j;
-	float tmpx;
-	float tmpy;
-	
-	tmpx = img->map[0][0].x;
-	tmpy = img->map[0][0].y;
-	i = 0;
-	while (i < img->height)
-	{
-		j = 0;
-		while(j < img->width)
-		{
-			img->map[i][j].x -= tmpx + ((img->width - 1) * img->zoom) / 2;
-			img->map[i][j].y -= tmpy + ((img->height - 1) * img->zoom) / 2;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_center(t_data *img)
-{
-	int	i;
-	int	j;
-	float tmpx;
-	float tmpy;
-	
-	i = 0;
-	tmpx = img->map[0][0].x;
-	tmpy = img->map[0][0].y;
-	fprintf(stderr, "tmpx vaut %f et y vaut %f \n", tmpx, tmpy);
-	while (i < img->height)
-	{
-		j = 0;
-		while(j < img->width)
-		{
-			img->map[i][j].x += -tmpx + WIN_WIDTH / 2 - ((img->width - 1) * img->zoom / 2);
-			img->map[i][j].y += -tmpy + WIN_HEIGHT / 2 - ((img->height - 1) * img->zoom / 2);
-			j++;
-		}
-		i++;
-	}
-}
 
 void	ft_rotate(t_data *img, int sens)
 {

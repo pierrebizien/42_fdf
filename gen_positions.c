@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:13 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 14:23:17 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:14:54 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ t_point**    ft_generate_position(t_data *img, t_point **map)
 
     i = 0;
 
-	map[0][0].x = WIN_WIDTH / 2 - ((img->width - 1) * img->zoom / 2);
-	map[0][0].y = WIN_HEIGHT / 2 - ((img->height - 1) * img->zoom / 2);
-
+	map[0][0].x = -((img->width - 1) * img->zoom) / 2;
+	map[0][0].y = -((img->height - 1) * img->zoom) / 2;
+    img->offset_x = -map[0][0].x + WIN_WIDTH / 2 - (img->width / 2) * img->zoom;
+    img->offset_y = -map[0][0].y + WIN_HEIGHT / 2 - (img->height / 2) * img->zoom;
     tempy = map[0][0].y;
     while (i < img->height)
     {
