@@ -11,7 +11,7 @@
 #define WIN_HEIGHT 900
 #define WIN_WIDTH 1500
 
-#define MAP "./maps/test_maps/1-2.fdf"
+#define MAP "./maps/test_maps/42.fdf"
 #define ROTATE (3.141593 / 180) * 3
 #define TEST
 
