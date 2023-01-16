@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/16 10:32:39 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:17:50 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,36 @@ int	deal_key(int key, t_data *param)
 		ft_trace_map(param->map, param);
 		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
 	}
+	if (key == 65362)
+	{
+		ft_incline(param, 1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+	}
+		if (key == 65364)
+	{
+		ft_incline(param, -1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+	}
+	if (key == 61)
+	{
+		ft_relief(param, 1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+		fprintf(stderr, "HOY\n");
+
+	}
+	if (key == 45)
+	{
+		ft_relief(param, -1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+		fprintf(stderr, "HOY\n");
+
+	}
+	fprintf(stderr, "KEY %d", key);
+	
 }
 
 int main(int ac, char** av)
@@ -65,14 +95,4 @@ int main(int ac, char** av)
 	mlx_put_image_to_window(img.mlx.ptr, img.mlx.win, img.img, 0 ,0);
 	mlx_key_hook(img.mlx.win, deal_key, &img);
 	mlx_loop(img.mlx.ptr);
-	
-	// TEST
-
-	// fd = open(MAP, O_RDONLY);
-    // img.mlx.ptr = mlx_init();
-	// img.mlx.win = mlx_new_window(img.mlx.ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	// img.img = mlx_new_image(img.mlx.ptr, WIN_WIDTH ,WIN_HEIGHT);
-	// img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_length, &img.endian);
-	
-	// mlx_loop(img.mlx.ptr);
 }

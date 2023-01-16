@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:13 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 15:14:54 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/16 11:25:05 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ t_point**    ft_generate_position(t_data *img, t_point **map)
 			map[i][0].x = map[i - 1][0].x;
         }
     }
-    fprintf(stderr, "0 0 y vaut %f\n", map[0][0].y);
+    // fprintf(stderr, "0 0 y vaut %f\n", map[0][0].y);
 	return (map);
 }

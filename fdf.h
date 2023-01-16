@@ -12,7 +12,7 @@
 #define WIN_WIDTH 1500
 
 #define MAP "./maps/test_maps/42.fdf"
-#define ROTATE (3.141593 / 180) * 3
+#define ROTATE (3.141593 / 180) * 5
 #define TEST
 
 typedef struct  s_win
@@ -59,6 +59,9 @@ t_point    **ft_trace_map(t_point **map, t_data *img);
 void	ft_rotate(t_data *img, int sens);
 void	ft_origin(t_data *img);
 void	ft_center(t_data *img);
+void	ft_incline(t_data *img, int sens);
+void ft_relief(t_data *img, int sens);
+
 
 
 #endif
