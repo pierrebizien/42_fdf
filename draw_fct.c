@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/16 14:18:34 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/16 18:24:08 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_color(int valeur, t_data *img)
 		color = 0;
 	}
 	else
-		color = 0xFFFFFF/*(valeur + 1) * 12000*/;
+		color = (valeur + 1) * 12000;
 	return (color);
 	
 }
@@ -52,7 +52,7 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 		sens = -1;
 	m = (float)(p2.y - p1.y)/ ((float)(p2.x - p1.x));
 	temp = p1.y;
-	fprintf(stderr, "horiz m vaut %f\n", m);
+	// fprintf(stderr, "horiz m vaut %f\n", m);
 	while ((int)p1.x != (int)p2.x + 1)
 	{
 		temp = temp + m * sens;
@@ -90,16 +90,16 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 	else 
 	{
 		sens = -1;
-		fprintf(stderr, "sens -1\n");
+		// fprintf(stderr, "sens -1\n");
 	}
 	// if (p2.x - p1.x == 0)
 	// 	m = p2.y - p1.y + 1;
 	// else
 	m = (float)(p2.x - p1.x)/ ((float)(p2.y - p1.y));
 	temp = p1.x;
-	fprintf(stderr, "vert m vaut %f\n", m);
+	// fprintf(stderr, "vert m vaut %f\n", m);
 	// fprintf(stderr, "p2x vaut %d et p2y vaut %d\n", (int)(p2.x), (int)(p2.y));
-	fprintf(stderr, "dans vert m vaut %f\n",m);
+	// fprintf(stderr, "dans vert m vaut %f\n",m);
 	while ((int)p1.y != (int)p2.y + 1)
 	{
 		temp = temp + m*sens;
@@ -142,24 +142,24 @@ void	tracersegment(t_point p1, t_point p2, t_data *img)
 	ft_offset(&p1, &p2, img);
 	if (p2.x - p1.x == 0)
 	{
-		fprintf(stderr, "coucou\n");
+		// fprintf(stderr, "coucou\n");
 		m = (float)(p2.y - p1.y);
 	}
 	else
 		m = (float)(p2.y - p1.y)/ ((float)(p2.x - p1.x));
-	fprintf(stderr, "\ndans tracer seg m vaut %f \n ", m);
+	// fprintf(stderr, "\ndans tracer seg m vaut %f \n ", m);
 	if (fabs(m) > 1)
 	{
-		fprintf(stderr, "\nvert \n ");
+		// fprintf(stderr, "\nvert \n ");
 
-		fprintf(stderr, "\nx %f y %f\n a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
+		// fprintf(stderr, "\nx %f y %f\n a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
 		bres_vertical(p1, p2, img);
 	}
 	else
 	{
-		fprintf(stderr, "\n horiz \n ");
+		// fprintf(stderr, "\n horiz \n ");
 
-		fprintf(stderr, "\np1 x %f y %f\n a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
+		// fprintf(stderr, "\np1 x %f y %f\n a p2 x %f y %f\n", p1.x, p1.y, p2.x, p2.y); 
 		bres_horizontal(p1, p2, img);
 	}
 }

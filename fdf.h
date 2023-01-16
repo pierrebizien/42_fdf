@@ -12,7 +12,10 @@
 #define WIN_WIDTH 1500
 
 #define MAP "./maps/test_maps/42.fdf"
-#define ROTATE (3.141593 / 180) * 5
+#define ROTATE (3.141593 / 180) * 10
+#define INCLINE (3.141593 / 180) * 5
+#define RELIEF 0.3
+#define	ZOOM 10
 #define TEST
 
 typedef struct  s_win
@@ -28,6 +31,17 @@ typedef struct	s_point
 	float	y;
 	float	h;
 }				t_point;
+
+
+typedef struct	s_view
+{
+	float	incl;
+	float	rot;
+	float	zoom;
+	float	relief;
+	
+}			t_view;
+
 typedef struct	s_data {
 	void		*img;
 	char		*addr;
@@ -42,6 +56,7 @@ typedef struct	s_data {
 	t_point		**map;
 	float		offset_x;
 	float		offset_y;
+	t_view		view;
 }				t_data;
 
 
@@ -52,7 +67,7 @@ int		ft_mlx_pixel_put_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 
 t_point		**ft_generate_map(int *fd, t_data *img);
-t_point    **ft_generate_position(t_data *img, t_point **map);
+t_point**    ft_gen_init_pos(t_data *img, t_point **map);
 
 t_point    **ft_trace_map(t_point **map, t_data *img);
 
@@ -63,5 +78,6 @@ void	ft_incline(t_data *img, int sens);
 void ft_relief(t_data *img, int sens);
 
 
+void    ft_init_map(t_data	*img);
 
 #endif

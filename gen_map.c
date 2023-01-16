@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 12:18:30 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:09:38 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int		ft_define(int *fd, t_data *img)
 	close(*fd);
 	*fd = j;
 	img->height = i;
-	img->zoom = 75;
+	img->view.zoom = (WIN_WIDTH) / (img->width);
 	// fprintf(stderr, "ZOOOM %f", img->zoom);
 	return (i);
 }
