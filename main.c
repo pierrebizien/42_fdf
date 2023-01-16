@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/13 15:17:45 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:03:01 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,36 @@ int	deal_key(int key, t_data *param)
 		ft_trace_map(param->map, param);
 		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
 	}
+	if (key == 65362)
+	{
+		ft_incline(param, 1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+	}
+		if (key == 65364)
+	{
+		ft_incline(param, -1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+	}
+	if (key == 61)
+	{
+		ft_relief(param, 1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+		fprintf(stderr, "HOY\n");
+
+	}
+	if (key == 45)
+	{
+		ft_relief(param, -1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+		fprintf(stderr, "HOY\n");
+
+	}
+	fprintf(stderr, "KEY %d", key);
+	
 }
 
 int main(int ac, char** av)
