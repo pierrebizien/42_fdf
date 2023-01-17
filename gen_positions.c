@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:13 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/16 17:11:15 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:33:46 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ t_point**    ft_gen_init_pos(t_data *img, t_point **map)
 	img->map[0][0].x = -((img->width - 1) * img->view.zoom) / 2;
 	img->map[0][0].y = -((img->height - 1) * img->view.zoom ) / 2;
     // fprintf(stderr, "0 0 x vaut %f et y vaut %f\n", img->map[0][0].x, img->map[0][0].y);
-    img->offset_x = -img->map[0][0].x + WIN_WIDTH / 2 - (img->width / 2) * img->view.zoom;
-    img->offset_y = -img->map[0][0].y + WIN_HEIGHT / 2 - (img->height / 2) * img->view.zoom;
+   
     // fprintf(stderr, "offset x vaut %f et y vaut %f\n", img->offset_x, img->offset_y);
 
     tempy = img->map[0][0].y;

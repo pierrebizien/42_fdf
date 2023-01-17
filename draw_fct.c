@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/17 14:41:51 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:06:03 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,24 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 		sens = -1;
 	m = (float)(p2.y - p1.y)/ ((float)(p2.x - p1.x));
 	temp = p1.y;
-	fprintf(stderr, "horiz m vaut %f\n", m);
+	// fprintf(stderr, "horiz m vaut %f\n", m);
 	while ((sens == 1 && (int)p1.x < (int)p2.x) ||(sens == -1 && (int)p1.x > (int)p2.x))
 	{
 		temp = temp + m * sens;
-		if ((int)temp + 1 > WIN_HEIGHT || (int)p1.x > WIN_WIDTH || (int)temp < 0 || (int)p1.x < 0)
+		if (!((int)temp + 1 >= WIN_HEIGHT || (int)p1.x >= WIN_WIDTH || (int)temp <= 0 || (int)p1.x <= 0))
 		{
-			// fprintf(stderr, "temp vaut %f \n", temp);
-			return ;
+
+			if(temp - (int)temp > 0.5)
+			{
+				// fprintf(stderr, "\n\navant de cast x vaut %f et y vaut %d \n", p1.x, (int)(temp + 1));
+				ft_mlx_pixel_put_img((int)p1.x, (int)(temp + 1), ft_color(p1.h, img), img);
+			}
+			else
+			{
+				// fprintf(stderr, "\n\navant de cast x vaut %f et y vaut %d \n", p1.x, (int)temp);
+				ft_mlx_pixel_put_img((int)p1.x, (int)(temp), ft_color(p1.h, img), img);
+			}
 		}
-		if(temp - (int)temp > 0.5)
-		{
-			// fprintf(stderr, "\n\navant de cast x vaut %f et y vaut %d \n", p1.x, (int)(temp + 1));
-			ft_mlx_pixel_put_img((int)p1.x, (int)(temp + 1), ft_color(p1.h, img), img);
-		}
-		else
-		{
-			// fprintf(stderr, "\n\navant de cast x vaut %f et y vaut %d \n", p1.x, (int)temp);
-			ft_mlx_pixel_put_img((int)p1.x, (int)(temp), ft_color(p1.h, img), img);
-		}
-		
 		p1.x+= (float)sens;
 		
 	}
@@ -107,9 +105,7 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 		i++;
 		// fprintf(stderr, "p1.y vaut %f et p2.y vaut %f\n", p1.y, p2.y);
 		temp = temp + m*sens;
-		if (temp + 1 > WIN_WIDTH || p1.y > WIN_HEIGHT || temp < 0 || p1.y < -0)
-			return ;
-		else
+		if (!(temp + 1 >= WIN_WIDTH || p1.y >= WIN_HEIGHT || temp <= 0 || p1.y <= -0))
 		{
 			if(temp - (int)temp > 0.5)
 			{
@@ -123,8 +119,9 @@ static void	bres_vertical(t_point p1, t_point p2, t_data *img)
 				ft_mlx_pixel_put_img((int)temp, (int)p1.y,  ft_color(p1.h, img), img);
 			}
 			
-			p1.y+= (float)sens;
 		}
+		p1.y+= (float)sens;
+
 		// fprintf(stderr, "p1x vaut %d et p1y vaut %d\n", (int)(temp), (int)(p1.y));
 		// fprintf(stderr, "p2x vaut %d et p2y vaut %d\n", (int)(temp), (int)(p2.y));
 	}
@@ -143,7 +140,9 @@ void	tracersegment(t_point p1, t_point p2, t_data *img)
 	float m;
 
 	ft_offset(&p1, &p2, img);
-	fprintf(stderr, "\n On trace de p1.x %f p1 y %f \n A p2.x %f p2.y %f \n------------------------\n", p1.x, p1.y, p2.x, p2.y);
+	if ((p1.x < 0 || p1.x > WIN_WIDTH || p1.y < 0 || p1.y > WIN_HEIGHT) && \
+	(p2.x < 0 || p2.x > WIN_WIDTH || p2.y < 0 || p2.y > WIN_HEIGHT) )
+		return ;
 	if (p2.x - p1.x == 0)
 	{
 		// fprintf(stderr, "coucou\n");

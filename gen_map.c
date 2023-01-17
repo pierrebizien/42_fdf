@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/16 17:09:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:34:29 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ static int		ft_define(int *fd, t_data *img)
     {
 		free(tmp);
         tmp = get_next_line(*fd);
+		// if (ft_define_width(tmp) != img->width)
+		// {
+		// 	fprintf(stderr, "INVALID MAP \n");
+		// 	mlx_string_put(img->mlx.ptr, img->mlx.win, WIN_WIDTH / 2, WIN_HEIGHT / 2, 0xFFFFFF, "INVALID MAP");
+		// 	return (-1);
+		// }
 		i++;
     }
 	if (tmp)
@@ -54,7 +60,7 @@ static int		ft_define(int *fd, t_data *img)
 	close(*fd);
 	*fd = j;
 	img->height = i;
-	img->view.zoom = (WIN_WIDTH) / (img->width);
+	img->view.zoom = (WIN_WIDTH) / (img->width + 1);
 	// fprintf(stderr, "ZOOOM %f", img->zoom);
 	return (i);
 }
@@ -78,7 +84,8 @@ t_point		**ft_generate_map(int *fd, t_data *img)
 	int		i;
 
 	i = 0;
-	ft_define(fd, img);
+	if(ft_define(fd, img) == -1)
+		return (NULL);
 	output = ft_calloc(sizeof(t_point *) , (img->height));
 	if (!output)
 		return (NULL);
