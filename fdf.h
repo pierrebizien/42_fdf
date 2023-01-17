@@ -15,7 +15,7 @@
 #define ROTATE (3.141593 / 180) * 10
 #define INCLINE (3.141593 / 180) * 5
 #define RELIEF 0.3
-#define	ZOOM 10
+#define	ZOOM 1.5
 #define TEST
 
 typedef struct  s_win

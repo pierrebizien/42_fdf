@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/16 18:29:06 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:37:12 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	deal_mouse(int mouse, int x, int y, t_data *param)
 	if (mouse == 4)
 	{
 		ft_gen_init_pos(param, param->map);
-		param->view.zoom += ZOOM;
+		param->view.zoom *= ZOOM;
+		param->view.relief *= ZOOM;
 		ft_rotate(param, -1);
 		ft_incline(param, 1);
 		ft_trace_map(param->map, param);
@@ -104,8 +105,8 @@ int	deal_mouse(int mouse, int x, int y, t_data *param)
 	if (mouse == 5)
 	{
 		ft_gen_init_pos(param, param->map);
-		if (param->view.zoom - ZOOM > 0)
-			param->view.zoom -= ZOOM;
+		param->view.zoom /= ZOOM;
+		param->view.relief /= ZOOM;
 		ft_rotate(param, -1);
 		ft_incline(param, 1);
 		ft_trace_map(param->map, param);
@@ -121,10 +122,10 @@ int main(int ac, char** av)
 	t_point p1;
 	t_point p2;
 
-	p1.x = 710;
-	p1.y = 412;
-	p2.x = 714;
-	p2.y = 487;
+	// p1.x = 1250;
+	// p1.y = 443;
+	// p2.x = 1250;
+	// p2.y = 443;
 
 
 	fd = open(MAP, O_RDONLY);
@@ -137,6 +138,8 @@ int main(int ac, char** av)
 	img.map = ft_gen_init_pos(&img, img.map);
 	ft_init_map(&img);
 	ft_trace_map(img.map, &img);
+	// tracersegment(p1, p2, &img);
+
 	mlx_put_image_to_window(img.mlx.ptr, img.mlx.win, img.img, 0 ,0);
 	mlx_key_hook(img.mlx.win, deal_key, &img);
 	mlx_mouse_hook(img.mlx.win, deal_mouse, &img);
