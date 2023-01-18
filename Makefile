@@ -2,12 +2,12 @@ LIBRARY = -I ./minilibx_linux -L ./minilibx_linux/ -I ./libft -L ./libft -lft
 
 NAME = FdF
 
-SRCS = main.c draw_fct.c ft_gen_map.c get_next_line.c get_next_line_utils.c ft_gen_positions.c draw_map.c ft_view.c ft_map_init.c
+SRCS = main.c draw_fct.c ft_gen_map.c ft_free.c get_next_line.c get_next_line_utils.c ft_key1.c ft_key2.c ft_key3.c ft_gen_positions.c draw_map.c ft_view.c ft_map_init.c
 
 all:
 	$(MAKE) -C ./minilibx_linux
 	$(MAKE) -C ./libft
-	gcc ${SRCS} -o ${NAME} -I. ${LIBRARY} -lmlx -lm -lXext -lX11 -g
+	gcc -Wall -Werror -Wextra ${SRCS} -o ${NAME} -I. ${LIBRARY} -lmlx -lm -lXext -lX11 -g
 
 clean:
 	rm -f *.d *.o

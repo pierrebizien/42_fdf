@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_map_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:28:28 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 16:39:55 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 17:23:56 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_init_map(t_data *img)
 		(img->width - 1) * img->view.zoom / 2;
 	img->offset_y = -img->map[0][0].y + WIN_HEIGHT / 2 - \
 		(img->height - 1) * img->view.zoom / 2;
-	ft_relief(img, 1);
-	ft_rotate(img, 1);
-	ft_incline(img, 1);
+	ft_relief(img);
+	ft_rotate(img);
+	ft_incline(img);
 	img->color_tab[0] = 0xFFFFFF;
 	img->color_tab[1] = 0x51F74C;
 	img->color_tab[2] = 0xF74C4C;

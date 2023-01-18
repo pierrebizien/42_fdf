@@ -69,15 +69,36 @@ void	tracersegment(t_point p1, t_point p2, t_data *img);
 t_point		**ft_generate_map(int *fd, t_data *img);
 void	ft_gen_init_pos(t_data *img);
 
-t_point    **ft_trace_map(t_point **map, t_data *img);
+void	ft_trace_map(t_data *img);
 
-void	ft_rotate(t_data *img, int sens);
-void	ft_origin(t_data *img);
+void	ft_rotate(t_data *img);
 void	ft_center(t_data *img);
-void	ft_incline(t_data *img, int sens);
-void ft_relief(t_data *img, int sens);
+void	ft_incline(t_data *img);
+void	ft_relief(t_data *img);
 
 
 void    ft_init_map(t_data	*img);
+
+// FONCTIONS KEYS
+
+int			ft_key_65561(t_data *param);
+int			ft_key_65563(t_data *param);
+int			ft_key_65562(t_data *param);
+int			ft_key_65564(t_data *param);
+int			ft_key_61(t_data *param);
+int			ft_key_45(t_data *param);
+int			ft_key_119(t_data *param);
+int			ft_key_115(t_data *param);
+int			ft_key_100(t_data *param);
+int			ft_key_97(t_data *param);
+int			ft_key_105(t_data *param);
+int			ft_key_112(t_data *param);
+int			ft_key_99(t_data *param);
+int			ft_mouse_4(t_data *param);
+int			ft_mouse_5(t_data *param);
+
+void	ft_free(t_data *img);
+void	ft_close(t_data *param);
+
 
 #endif

@@ -6,18 +6,16 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:52 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 16:43:33 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 17:19:40 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_relief(t_data *img, int sens)
+void	ft_relief(t_data *img)
 {
 	int		i;
 	int		j;
-	double	tmp;
-	double	tmp2;
 
 	i = 0;
 	while (i < img->height)
@@ -32,12 +30,10 @@ void	ft_relief(t_data *img, int sens)
 	}
 }
 
-void	ft_incline(t_data *img, int sens)
+void	ft_incline(t_data *img)
 {
 	int		i;
 	int		j;
-	double	tmp;
-	double	tmp2;
 
 	i = 0;
 	while (i < img->height)
@@ -45,7 +41,6 @@ void	ft_incline(t_data *img, int sens)
 		j = 0;
 		while (j < img->width)
 		{
-			tmp = img->map[i][j].y;
 			img->map[i][j].y = (cos(img->view.incl) * img->map[i][j].y - \
 			sin(img->view.incl) * img->map[i][j].h * img->view.relief);
 			j++;
@@ -54,12 +49,11 @@ void	ft_incline(t_data *img, int sens)
 	}
 }
 
-void	ft_rotate(t_data *img, int sens)
+void	ft_rotate(t_data *img)
 {
 	int		i;
 	int		j;
 	double	tmp;
-	double	tmp2;
 
 	i = 0;
 	while (i < img->height)
