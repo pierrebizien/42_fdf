@@ -50,8 +50,8 @@ typedef struct	s_data {
 	int			endian;
 	int			height;
 	int			width;
-	float		zoom;
-	int			bool_color;
+	int			color_tab[5];
+	int			color;
 	t_win		mlx;
 	t_point		**map;
 	float		offset_x;
@@ -63,7 +63,7 @@ typedef struct	s_data {
 
 //PROTOTYPES DRAW
 
-int		ft_mlx_pixel_put_img(int x, int y, int color, t_data *img);
+int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 
 t_point		**ft_generate_map(int *fd, t_data *img);

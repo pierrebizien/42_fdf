@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/17 18:34:29 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 15:12:53 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ static int		ft_define(int *fd, t_data *img)
     {
 		free(tmp);
         tmp = get_next_line(*fd);
-		// if (ft_define_width(tmp) != img->width)
-		// {
-		// 	fprintf(stderr, "INVALID MAP \n");
-		// 	mlx_string_put(img->mlx.ptr, img->mlx.win, WIN_WIDTH / 2, WIN_HEIGHT / 2, 0xFFFFFF, "INVALID MAP");
-		// 	return (-1);
-		// }
 		i++;
     }
 	if (tmp)
@@ -61,7 +55,6 @@ static int		ft_define(int *fd, t_data *img)
 	*fd = j;
 	img->height = i;
 	img->view.zoom = (WIN_WIDTH) / (img->width + 1);
-	// fprintf(stderr, "ZOOOM %f", img->zoom);
 	return (i);
 }
 
@@ -77,10 +70,25 @@ void	ft_fill_line(char **tmp, t_point *line, t_data *img)
 	}
 }
 
+void	ft_free_double_c(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	
+}
+
 t_point		**ft_generate_map(int *fd, t_data *img)
 {
     t_point **output;
 	char	**tmp;
+	char	*tmp_gnl;
 	int		i;
 
 	i = 0;
@@ -97,10 +105,12 @@ t_point		**ft_generate_map(int *fd, t_data *img)
 			return (NULL);
 	//		Fonction de free
 		}
-		tmp = ft_split(get_next_line(*fd), ' ');
+		tmp_gnl = get_next_line(*fd);
+		tmp = ft_split(tmp_gnl, ' ');
+		free(tmp_gnl);
 		ft_fill_line(tmp, output[i], img);
+		ft_free_double_c(tmp);
 		i++;
 	}
-	img->bool_color = 1;
 	return (output);
 }

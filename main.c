@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/17 18:43:35 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 15:18:55 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void ft_free(t_data *img)
+{
+	int i;
+	
+	i = 0;
+	fprintf(stderr, "Height %d\n", img->height);
+	while (i < img->height)
+	{
+		free(img->map[i]);
+		i++;
+	}
+	fprintf(stderr, "HEY\n");
+	free(img->map);
+	
+}
 
 int ft_close(t_data *param)
 {
-	mlx_loop_end(param->mlx.ptr);
+	ft_free(param);
+	mlx_destroy_image(param->mlx.ptr, param->img);
 	mlx_destroy_window(param->mlx.ptr, param->mlx.win);
 	mlx_destroy_display(param->mlx.ptr);
-	
 	free(param->mlx.ptr);
+	
 }
 
 int	deal_key(int key, t_data *param)
 {
-	param->bool_color = 0;
-	ft_trace_map(param->map, param);
-	param->bool_color = 1;
+	static int i = 0;
+	mlx_destroy_image(param->mlx.ptr, param->img);
+	param->img = mlx_new_image(param->mlx.ptr, WIN_WIDTH, WIN_HEIGHT);
+	
 	if (key == 65361)
 	{
 		param->view.rot += ROTATE;
 		ft_gen_init_pos(param, param->map);
-		// ft_relief(param, 1);
 		ft_rotate(param, 1);
 		ft_incline(param, 1);
 		ft_trace_map(param->map, param);
@@ -155,16 +171,26 @@ int	deal_key(int key, t_data *param)
 		
 	}
 		if(key == 65307)
-			ft_close(param);
-	fprintf(stderr, "key = %d", key);
+			mlx_loop_end(param->mlx.ptr);
+		if (key == 99)
+	{
+		i++;
+		if (i > 4)
+			i = 0;
+		param->color = param->color_tab[i];
+		ft_gen_init_pos(param, param->map);
+		ft_rotate(param, -1);
+		ft_incline(param, 1);
+		ft_trace_map(param->map, param);
+		mlx_put_image_to_window(param->mlx.ptr, param->mlx.win, param->img, 0 ,0);
+	}
 	
 }
 
 int	deal_mouse(int mouse, int x, int y, t_data *param)
 {
-	param->bool_color = 0;
-	ft_trace_map(param->map, param);
-	param->bool_color = 1;
+	mlx_destroy_image(param->mlx.ptr, param->img);
+	param->img = mlx_new_image(param->mlx.ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (mouse == 4)
 	{
 		if (param->view.zoom * ZOOM < 2000)
@@ -172,7 +198,6 @@ int	deal_mouse(int mouse, int x, int y, t_data *param)
 			param->view.zoom *= ZOOM;
 			param->view.relief *= ZOOM;
 			ft_gen_init_pos(param, param->map);
-			fprintf(stderr, "ZOOM %f \n", param->view.zoom);
 			ft_rotate(param, -1);
 			ft_incline(param, 1);
 			ft_trace_map(param->map, param);
@@ -209,31 +234,20 @@ int main(int ac, char** av)
     t_win	mlx_i;
 	t_data	img;
 	int		fd;
-	t_point p1;
-	t_point p2;
-
-	// p1.x = 1250;
-	// p1.y = 443;
-	// p2.x = 1250;
-	// p2.y = 443;
-
 
 	fd = open(MAP, O_RDONLY);
-	fprintf(stderr, "%d fd\n", fd);
     img.mlx.ptr = mlx_init();
 	img.mlx.win = mlx_new_window(img.mlx.ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	img.img = mlx_new_image(img.mlx.ptr, WIN_WIDTH ,WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_length, &img.endian);
 	img.map = ft_generate_map(&fd, &img);
-	// //pb de free ensuite
-	fprintf(stderr, "HEIGHT %d, WIDTH %d\n", img.height, img.width);
-	img.map = ft_gen_init_pos(&img, img.map);
+	ft_gen_init_pos(&img, img.map);
 	ft_init_map(&img);
 	ft_trace_map(img.map, &img);
-
 	mlx_put_image_to_window(img.mlx.ptr, img.mlx.win, img.img, 0 ,0);
 	mlx_hook(img.mlx.win, 17, 0, ft_close, &img);
 	mlx_key_hook(img.mlx.win, deal_key, &img);
 	mlx_mouse_hook(img.mlx.win, deal_mouse, &img);
 	mlx_loop(img.mlx.ptr);
+	ft_close(&img);
 }
