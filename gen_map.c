@@ -6,13 +6,13 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 15:12:53 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:22:24 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		ft_define_width(char *str)
+static int	ft_define_width(char *str)
 {
 	int	i;
 	int	count;
@@ -27,27 +27,27 @@ static int		ft_define_width(char *str)
 			count++;
 		i++;
 	}
-	return(count + 1);
+	return (count + 1);
 }
 
 //Tourne une fois gnl et remet a 0 avec un fd
 //definit height width et zoom initial
 
-static int		ft_define(int *fd, t_data *img)
+static int	ft_define(int *fd, t_data *img)
 {
-    int		i;
+	int		i;
 	int		j;
 	char	*tmp;
 
 	i = 0;
 	tmp = get_next_line(*fd);
 	img->width = ft_define_width(tmp);
-    while (tmp)
-    {
+	while (tmp)
+	{
 		free(tmp);
-        tmp = get_next_line(*fd);
+		tmp = get_next_line(*fd);
 		i++;
-    }
+	}
 	if (tmp)
 		free(tmp);
 	j = open(MAP, O_RDONLY);
@@ -81,30 +81,26 @@ void	ft_free_double_c(char **str)
 		i++;
 	}
 	free(str);
-	
 }
 
-t_point		**ft_generate_map(int *fd, t_data *img)
+t_point	**ft_generate_map(int *fd, t_data *img)
 {
-    t_point **output;
+	t_point	**output;
 	char	**tmp;
 	char	*tmp_gnl;
 	int		i;
 
 	i = 0;
-	if(ft_define(fd, img) == -1)
+	if (ft_define(fd, img) == -1)
 		return (NULL);
-	output = ft_calloc(sizeof(t_point *) , (img->height));
+	output = ft_calloc(sizeof(t_point *), (img->height));
 	if (!output)
 		return (NULL);
-	while(i < img->height)
+	while (i < img->height)
 	{
-		output[i] = ft_calloc(sizeof(t_point) , (img->width));
+		output[i] = ft_calloc(sizeof(t_point), (img->width));
 		if (!output[i])
-		{
 			return (NULL);
-	//		Fonction de free
-		}
 		tmp_gnl = get_next_line(*fd);
 		tmp = ft_split(tmp_gnl, ' ');
 		free(tmp_gnl);
