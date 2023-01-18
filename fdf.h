@@ -67,7 +67,7 @@ int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 
 t_point		**ft_generate_map(int *fd, t_data *img);
-t_point**    ft_gen_init_pos(t_data *img, t_point **map);
+void	ft_gen_init_pos(t_data *img);
 
 t_point    **ft_trace_map(t_point **map, t_data *img);
 

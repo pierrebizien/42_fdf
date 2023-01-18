@@ -2,7 +2,7 @@ LIBRARY = -I ./minilibx_linux -L ./minilibx_linux/ -I ./libft -L ./libft -lft
 
 NAME = FdF
 
-SRCS = main.c draw_fct.c gen_map.c get_next_line.c get_next_line_utils.c gen_positions.c draw_map.c view.c map_init.c
+SRCS = main.c draw_fct.c ft_gen_map.c get_next_line.c get_next_line_utils.c ft_gen_positions.c draw_map.c ft_view.c ft_map_init.c
 
 all:
 	$(MAKE) -C ./minilibx_linux

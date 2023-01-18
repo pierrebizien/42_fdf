@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:51 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 15:55:41 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:57:02 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ static void	bres_horizontal(t_point p1, t_point p2, t_data *img)
 		temp = temp + m * s;
 		if (!((int)temp + 1 >= WIN_HEIGHT || (int)p1.x >= WIN_WIDTH || \
 		(int)temp <= 0 || (int)p1.x <= 0))
+		{
 			if (temp - (int)temp > 0.5)
 				ft_mlx_pix_img((int)p1.x, (int)(temp + 1), img->color, img);
 			else
 				ft_mlx_pix_img((int)p1.x, (int)(temp), img->color, img);
+		}
 		p1.x+= (float)s;
 	}
 }
