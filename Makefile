@@ -19,11 +19,7 @@ fclean: clean
 	$(MAKE) fclean -C libft
 	$(MAKE) fclean -C minilibx_linux
 
-run: all
-	./FdF
 
 re: fclean
 	all
 
-valgrind: all
-	valgrind ./FdF --leak-check=full
