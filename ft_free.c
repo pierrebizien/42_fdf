@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 18:20:13 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/19 16:06:51 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:32:39 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ void	ft_close(t_data *param)
 	mlx_destroy_window(param->mlx.ptr, param->mlx.win);
 	mlx_destroy_display(param->mlx.ptr);
 	free(param->mlx.ptr);
+}
+
+void	ft_free_double_t(t_data *img)
+{
+	int	i;
+
+	i = 0;
+	while (img->map[i])
+	{
+		free(img->map[i]);
+		i++;
+	}
+	free(img->map);
 }

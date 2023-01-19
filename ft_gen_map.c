@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/19 15:40:34 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:29:59 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_point	**ft_generate_map(int *fd, t_data *img, char *av1)
 	{
 		output[i] = ft_calloc(sizeof(t_point), (img->width));
 		if (!output[i])
-			return (NULL);
+			return (ft_free_double_t(img), NULL);
 		tmp_gnl = get_next_line(*fd);
 		tmp = ft_split(tmp_gnl, ' ');
 		free(tmp_gnl);

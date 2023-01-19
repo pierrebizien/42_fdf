@@ -1,22 +1,32 @@
-#ifndef _FDF_H_
-# define _FDF_H_
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 18:13:27 by pbizien           #+#    #+#             */
+/*   Updated: 2023/01/19 18:15:46 by pbizien          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "minilibx_linux/mlx.h"
-#include "libft/libft.h"
-#include "get_next_line.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef FDF_H
+# define FDF_H
 
-#define WIN_HEIGHT 900
-#define WIN_WIDTH 1500
+# include "minilibx_linux/mlx.h"
+# include "libft/libft.h"
+# include "get_next_line.h"
+# include <math.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-#define MAP "./maps/test_maps/42.fdf"
-#define ROTATE (3.141593 / 180) * 10
-#define INCLINE (3.141593 / 180) * 5
-#define RELIEF 0.3
-#define	ZOOM 1.5
-#define TEST
+# define WIN_HEIGHT 900
+# define WIN_WIDTH 1500
+
+# define ROTATE (3.141593 / 180) * 10
+# define INCLINE ((3.141593 / 180) * 5)
+# define RELIEF 0.3
+# define	ZOOM 1.5
 
 typedef struct  s_win
 {
@@ -59,24 +69,16 @@ typedef struct	s_data {
 	t_view		view;
 }				t_data;
 
-
-
 //PROTOTYPES DRAW
 
 int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
-
 t_point	**ft_generate_map(int *fd, t_data *img, char *av1);
 void	ft_gen_init_pos(t_data *img);
-
 void	ft_trace_map(t_data *img);
-
 void	ft_rotate(t_data *img);
-void	ft_center(t_data *img);
 void	ft_incline(t_data *img);
 void	ft_relief(t_data *img);
-
-
 void    ft_init_map(t_data	*img);
 
 // FONCTIONS KEYS
@@ -97,9 +99,11 @@ int			ft_key_99(t_data *param);
 int			ft_mouse_4(t_data *param);
 int			ft_mouse_5(t_data *param);
 
+
 void	ft_free(t_data *img);
 void	ft_close(t_data *param);
+void	ft_start(t_data *img);
+void	ft_free_double_t(t_data *img);
 
-int	ft_start(t_data *img);
 
 #endif
