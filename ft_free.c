@@ -6,16 +6,16 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 18:20:13 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 18:22:12 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:06:51 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void ft_free(t_data *img)
+void	ft_free(t_data *img)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < img->height)
 	{
@@ -25,7 +25,7 @@ void ft_free(t_data *img)
 	free(img->map);
 }
 
-void    ft_close(t_data *param)
+void	ft_close(t_data *param)
 {
 	ft_free(param);
 	mlx_destroy_image(param->mlx.ptr, param->img);

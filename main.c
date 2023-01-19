@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:55 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 18:45:07 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:28:26 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,28 @@ int main(int ac, char** av)
 	int		fd;
 
     img.mlx.ptr = mlx_init();
-	if (!img.mlx.ptr)
-		return (free(img.mlx.ptr), 0);
+	// if (!img.mlx.ptr)
+	// 	return (-1);
 	img.mlx.win = mlx_new_window(img.mlx.ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	if(!img.mlx.win)
-		return (free(img.mlx.ptr), free(img.mlx.win), 0);
+	// if(!img.mlx.win)
+	// 	return (free(img.mlx.win), -1);
 	img.img = mlx_new_image(img.mlx.ptr, WIN_WIDTH ,WIN_HEIGHT);
+	// if (!img.img)
+	// 	return(free(img.mlx.ptr), free(img.mlx.win), -1);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_length, &img.endian);
 	fd = open(av[1], O_RDONLY);
-	img.map = ft_generate_map(&fd, &img);
-	ft_gen_init_pos(&img);
+	// if (fd == -1)
+	// 	return (free(img.mlx.ptr), free(img.mlx.win), free(img.img), -1);
+	img.map = ft_generate_map(&fd, &img, av[1]);
+	// if (!img.map)
+	// 	return (close(fd), free(img.mlx.ptr), free(img.mlx.win), free(img.img), -1);
+	// ft_run(&img);
 	ft_init_map(&img);
 	ft_trace_map(&img);
 	mlx_put_image_to_window(img.mlx.ptr, img.mlx.win, img.img, 0 ,0);
-	mlx_hook(img.mlx.win, 17, 0, ft_my_loopend, &img);
-	mlx_key_hook(img.mlx.win, deal_key, &img);
-	mlx_mouse_hook(img.mlx.win, deal_mouse, &img);
+	// mlx_hook(img.mlx.win, 17, 0, ft_my_loopend, &img);
+	// mlx_key_hook(img.mlx.win, deal_key, &img);
+	// mlx_mouse_hook(img.mlx.win, deal_mouse, &img);
 	mlx_loop(img.mlx.ptr);
 	ft_close(&img);
 	(void)ac;

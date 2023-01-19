@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gen_map.c                                          :+:      :+:    :+:   */
+/*   ft_gen_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:45:47 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/18 16:22:24 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/19 15:40:34 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_define_width(char *str)
 //Tourne une fois gnl et remet a 0 avec un fd
 //definit height width et zoom initial
 
-static int	ft_define(int *fd, t_data *img)
+static int	ft_define(int *fd, t_data *img, char *av1)
 {
 	int		i;
 	int		j;
@@ -50,7 +50,7 @@ static int	ft_define(int *fd, t_data *img)
 	}
 	if (tmp)
 		free(tmp);
-	j = open(MAP, O_RDONLY);
+	j = open(av1, O_RDONLY);
 	close(*fd);
 	*fd = j;
 	img->height = i;
@@ -83,7 +83,7 @@ void	ft_free_double_c(char **str)
 	free(str);
 }
 
-t_point	**ft_generate_map(int *fd, t_data *img)
+t_point	**ft_generate_map(int *fd, t_data *img, char *av1)
 {
 	t_point	**output;
 	char	**tmp;
@@ -91,7 +91,7 @@ t_point	**ft_generate_map(int *fd, t_data *img)
 	int		i;
 
 	i = 0;
-	if (ft_define(fd, img) == -1)
+	if (ft_define(fd, img, av1) == -1)
 		return (NULL);
 	output = ft_calloc(sizeof(t_point *), (img->height));
 	if (!output)

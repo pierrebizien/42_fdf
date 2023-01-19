@@ -66,7 +66,7 @@ typedef struct	s_data {
 int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 
-t_point		**ft_generate_map(int *fd, t_data *img);
+t_point	**ft_generate_map(int *fd, t_data *img, char *av1);
 void	ft_gen_init_pos(t_data *img);
 
 void	ft_trace_map(t_data *img);
@@ -100,5 +100,6 @@ int			ft_mouse_5(t_data *param);
 void	ft_free(t_data *img);
 void	ft_close(t_data *param);
 
+int	ft_start(t_data *img);
 
 #endif
