@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:25:12 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/19 15:45:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:26:27 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	ft_key_65563(t_data *param)
 
 int	ft_key_65562(t_data *param)
 {
-	param->view.incl += INCLINE;
+	fprintf(stderr, "incl vaut %f \n", param->view.incl);
+	if (param->view.incl <= 1.57)
+		param->view.incl += INCLINE;
 	ft_gen_init_pos(param);
 	ft_rotate(param);
 	ft_incline(param);
@@ -47,7 +49,9 @@ int	ft_key_65562(t_data *param)
 
 int	ft_key_65564(t_data *param)
 {
-	param->view.incl -= INCLINE;
+	fprintf(stderr, "incl vaut %f \n", param->view.incl);
+	if (param->view.incl >= -1.57)
+		param->view.incl -= INCLINE;
 	ft_gen_init_pos(param);
 	ft_rotate(param);
 	ft_incline(param);

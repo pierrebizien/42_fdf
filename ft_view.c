@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:52 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/23 11:05:14 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:09:39 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_incline(t_data *img)
 		}
 		i++;
 	}
-} 
+}
 
 void	ft_rotate(t_data *img)
 {

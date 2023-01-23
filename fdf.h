@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:13:27 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/23 13:29:11 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:10:05 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,13 @@ typedef struct s_data {
 int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 t_point	**ft_generate_map(int *fd, t_data *img, char *av1);
-int	ft_gen_init_pos(t_data *img);
+int		ft_gen_init_pos(t_data *img);
 void	ft_trace_map(t_data *img);
 void	ft_rotate(t_data *img);
 void	ft_incline(t_data *img);
 void	ft_relief(t_data *img);
 void	ft_init_map(t_data	*img);
+void	ft_one_point(t_data *img);
 
 // FONCTIONS KEYS
 

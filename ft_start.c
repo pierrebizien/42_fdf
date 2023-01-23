@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:13:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/23 13:42:36 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:09:30 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	deal_key(int key, t_data *param)
 {
 	mlx_destroy_image(param->mlx.ptr, param->img);
 	param->img = mlx_new_image(param->mlx.ptr, WIN_WIDTH, WIN_HEIGHT);
-	fprintf(stderr, "%d", key);
 	if (key == 65361)
 		return (ft_key_65561(param));
 	else if (key == 65363)
@@ -83,5 +82,5 @@ void	ft_start(t_data *img)
 	mlx_key_hook(img->mlx.win, deal_key, img);
 	mlx_mouse_hook(img->mlx.win, deal_mouse, img);
 	mlx_loop(img->mlx.ptr);
-	ft_close(img); 
+	ft_close(img);
 }

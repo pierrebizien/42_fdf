@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:35:22 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/23 13:51:53 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:03:37 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int	ft_key_45(t_data *param)
 
 int	ft_key_119(t_data *param)
 {
-	fprintf(stderr, "offset vaut %f \n", param->offset_y);
 	ft_gen_init_pos(param);
 	param->offset_y -= 10;
-	fprintf(stderr, "offset vaut %f \n", param->offset_y);
 	ft_rotate(param);
 	ft_incline(param);
 	ft_trace_map(param);
