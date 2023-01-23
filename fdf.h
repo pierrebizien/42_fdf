@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:13:27 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/19 18:26:46 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 13:29:11 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define WIN_HEIGHT 900
 # define WIN_WIDTH 1500
 
-# define ROTATE 0.174532 // (3.141593 / 180) * 10
-# define INCLINE 0.087266//((3.141593 / 180) * 5)
+# define ROTATE 0.174532// (3.141593 / 180) * 10
+# define INCLINE 0.087266 //((3.141593 / 180) * 5)
 # define RELIEF 0.3
 # define ZOOM 1.5
 
@@ -72,7 +72,7 @@ typedef struct s_data {
 int		ft_mlx_pix_img(int x, int y, int color, t_data *img);
 void	tracersegment(t_point p1, t_point p2, t_data *img);
 t_point	**ft_generate_map(int *fd, t_data *img, char *av1);
-void	ft_gen_init_pos(t_data *img);
+int	ft_gen_init_pos(t_data *img);
 void	ft_trace_map(t_data *img);
 void	ft_rotate(t_data *img);
 void	ft_incline(t_data *img);

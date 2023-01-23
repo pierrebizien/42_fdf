@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 17:09:00 by pbizien           #+#    #+#             */
-/*   Updated: 2022/11/08 09:32:31 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:42:06 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
-	size_t	i;
+	size_t	i; 
 	int		j;
 
 	if (needle == NULL || ft_strlen(needle) == 0)
