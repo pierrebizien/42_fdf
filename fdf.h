@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:13:27 by pbizien           #+#    #+#             */
-/*   Updated: 2023/01/23 14:10:05 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/26 13:50:48 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,9 @@ void	ft_free(t_data *img);
 void	ft_close(t_data *param);
 void	ft_start(t_data *img);
 void	ft_free_double_t(t_data *img);
+void	ft_free_double_t2(t_point **map, int i);
+
+int		ft_strlen_double(char **strstr);
+void	ft_rogne(char **tmp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 17:07:51 by pbizien           #+#    #+#             */
-/*   Updated: 2022/11/08 10:42:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/01/26 13:25:21 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 	{
 		while (s[i] == c && s[i])
 			i++;
-		if (s[i] != c && s[i] != '\0')
+		if (s[i] != c && s[i] != '\0' && s[i] != '\n')
 		{
 			output[y++] = ft_generate(s + i, c);
 			i++;
